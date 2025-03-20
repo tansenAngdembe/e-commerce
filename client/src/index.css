@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import "tailwindcss";
+
+*{
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+:root{
+    --p-shadow: 1px 2px 3px hsl(0, 0%, 52%);
+    --border:  hsl(0, 0%, 70%);
+    
+    
+
+    /*...*/
+}
+
