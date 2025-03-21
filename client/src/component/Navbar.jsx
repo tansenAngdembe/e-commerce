@@ -1,32 +1,53 @@
 import { Heart, Search, ShoppingCart } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import Advertisement from "./Advertisement";
 const Navbar = () => {
+  const location = useLocation();
+  const isActive = (path)=>{
+    return location.pathname === path ? "text-green-600" : "";
+
+  }
+   
+
   return (
     <div className="border-b-2 border-b-[var(--border)] h-24 flex flex-col justify-center bg-white">
+      <div>
+        <Advertisement/>
+      </div>
       <nav className="flex items-center justify-around">
         <div>
-          <h1 className="text-2xl font-bold font-sans">Quick Kart</h1>
+          <h1 className="text-2xl font-bold font-sans"> <Link to="/">Quick Kart</Link> </h1>
         </div>
         <div>
           <ul className="flex gap-12 text-[1rem] font-semibold">
             <li>
-            <a href="#">
+            <Link to="/"
+            className={ `${isActive("/")}`}
+            >
               Home
-            </a>
+            </Link>
             </li>
             <li>
-            <a href="#">
-              Contact
-            </a>
+            <Link to="/contact"
+             className={ `${isActive("/contact")}`}
+            >
+              Contact Us
+            </Link>
             </li>
             <li>
-            <a href="#">
+            <Link to="/about"
+             className={ `${isActive("/about")}`}
+            
+            >
               About
-            </a>
+            </Link>
             </li>
             <li>
-            <a href="#">
+            <Link to="/sign"
+             className={ `${isActive("/sign")}`}
+            >
               Sign In
-            </a>
+            </Link>
             </li>
           </ul>
         </div>
@@ -42,15 +63,15 @@ const Navbar = () => {
             <ul className="flex justify-center items-center gap-5">
           
             <li>
-            <a href="#">
+            <Link to="#">
               <ShoppingCart />
-            </a>
+            </Link>
             </li>
 
             <li>
-            <a href="#">
+            <Link to="#">
               <Heart />
-            </a>
+            </Link>
             </li>
             </ul>
           </div>

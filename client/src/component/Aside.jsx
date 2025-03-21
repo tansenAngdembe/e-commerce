@@ -1,7 +1,7 @@
 const Aside = () => {
   return (
     <div className="w-3xs ">
-      <ul className="flex shadow-[var(--p-shadow)] flex-col gap-4 px-10 py-2.5 font-light">
+      <ul className="flex shadow-[var(--p-shadow)] flex-col gap-4 px-10 py-2.5 font-semibold S font">
         <li>
           <a href="">Woman's Fashion</a>
         </li>
