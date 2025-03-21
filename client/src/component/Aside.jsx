@@ -1,36 +1,32 @@
 const Aside = () => {
   return (
-    <div className="w-3xs ">
-      <ul className="flex shadow-[var(--p-shadow)] flex-col gap-4 px-10 py-2.5 font-semibold S font">
-        <li>
-          <a href="">Woman's Fashion</a>
-        </li>
-        <li>
-          <a href="">Men's Fashion</a>
-        </li>
-        <li>
-          <a href="">Electronics</a>
-        </li>
-        <li>
-          <a href="">Home & Lifestyle</a>
-        </li>
-        <li>
-          <a href="">Medicine</a>
-        </li>
-        <li>
-          <a href="">Sports & Outdoor</a>
-        </li>
-        <li>
-          <a href="">Baby's & Toys</a>
-        </li>
-        <li>
-          <a href="">Gorceries & Pets</a>
-        </li>
-        <li>
-          <a href="">Helth & Beauty</a>
-        </li>
-      </ul>
-    </div>
+<div className="w-64 bg-white shadow-lg rounded-lg p-4">
+  <h2 className="text-lg font-bold mb-3 text-gray-700 ">Categories</h2>
+  <ul className="flex flex-col gap-2">
+    {[
+      "Women's Fashion",
+      "Men's Fashion",
+      "Electronics",
+      "Home & Lifestyle",
+      "Medicine",
+      "Sports & Outdoor",
+      "Babies & Toys",
+      "Groceries & Pets",
+      "Health & Beauty",
+    ].map((category, index) => (
+      <li key={index}>
+        <a
+          href="#"
+          className="block px-3 py-2 rounded-md text-gray-600 transition-all duration-300 hover:bg-sky-100 hover:text-gray-600"
+        >
+          {category}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
   );
 };
 
