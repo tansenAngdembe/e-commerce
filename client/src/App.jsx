@@ -4,6 +4,7 @@ import About from "./component/About.jsx";
 import Home from "./component/Home.jsx"
 import Contact from "./component/Contact.jsx";
 import Signin from "./component/Signin.jsx"
+import Productpage from "./component/products/Productpage.jsx";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
            <Route path="/about" element={<About/>}/>
            <Route path="/contact"  element={<Contact/>}/>        
            <Route path ="/sign" element={<Signin/>}/>     
-
+           <Route path="/product/:name/:id" element={<Productpage/>}/>
          </Route>
     </Routes>
   )
