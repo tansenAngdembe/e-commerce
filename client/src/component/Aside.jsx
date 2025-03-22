@@ -13,6 +13,7 @@ const Aside = () => {
       "Babies & Toys",
       "Groceries & Pets",
       "Health & Beauty",
+      
     ].map((category, index) => (
       <li key={index}>
         <a

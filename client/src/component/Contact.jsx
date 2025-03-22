@@ -1,8 +1,9 @@
 
 const Contact = ()=>{
     return (
-        <div>
-            <h1>This is contact us</h1>
+        <div className="flex justify-around items-center h-lvh">
+            <div>tehu</div>
+         
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { Heart, Eye, Star } from "lucide-react";
+import { Heart, Eye, Star, ShoppingCart } from "lucide-react";
 import Img from "../assets/console.png";
 const ProductCard = ({ title, price, disPrice, disRate, ratingCount }) => {
   return (
@@ -35,8 +35,9 @@ const ProductCard = ({ title, price, disPrice, disRate, ratingCount }) => {
   </div>
 
 
-  <button className="w-full bg-black text-white text-xs px-3 py-1.5 mt-2 rounded transition hover:bg-gray-700 cursor-pointer">
+  <button className="flex justify-between items-center  w-full bg-[#000000] text-white text-xs px-4 py-2.5 mt-2 rounded transition hover:bg-[#121212] cursor-pointer">
     Add to Cart
+    <ShoppingCart className="w-4 h-4" />
   </button>
 </div>
 
