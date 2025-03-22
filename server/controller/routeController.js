@@ -1,33 +1,23 @@
 const asyncErrorhandler = require("../utils/asyncErrorhandler");
+const Products = require("../model/Products")
 
 
+const showAllProucts = asyncErrorhandler(async (req, res) => {
+  const products = await Products.find();
+  const totalProducts = await Products.countDocuments();
 
-const showAllProucts = asyncErrorhandler(async (req,res)=>{
-    const someData = [{
-        "id": "PROD001",
-        "name": "Smartphone X Pro",
-        "slug": "smartphone-x-pro",
-        "sku": "SP-X-PRO-001",
-        "category": {
-          "id": "CAT001",
-          "name": "Electronics",
-          "subCategory": "Smartphones"
-        },
-        "brand": {
-          "id": "BRD001",
-          "name": "TechBrand",
-          "logo": "https://example.com/brands/techbrand.png"
-        },
-        "description": {
-          "short": "Latest flagship smartphone with advanced features",
-          "long": "The Smartphone X Pro features a 6.7-inch AMOLED display, 5G connectivity, and a revolutionary camera system."
-        },
-    }]
-    res.status(200).json({success:true,someData})
+  res.status(200).json({ success: true, totalProducts, products })
 
 })
 
+const insertProducts = asyncErrorhandler(async (req,res)=>{
+  const insert = new Products(req.body);
+  await insert.save()
+  res.status(200).json({success:true,insert})
+
+})
 
 module.exports = {
-    showAllProucts
+  showAllProucts,
+  insertProducts
 }
