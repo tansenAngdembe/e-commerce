@@ -24,7 +24,7 @@ Install backend with npm // implemented with node/express
 
 
 ## Test API/endpoint vai Postman
-- Get all products :- http://localhost:5001/products
+- Get all products :- http://localhost:5001/api/products
 - Other in feature
 
 ## Environment Variables
