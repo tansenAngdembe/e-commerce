@@ -15,7 +15,7 @@ const ProductCard = () => {
           <div className="flex justify-between items-center text-xs">
             <span className="bg-red-500 text-white px-1.5 py-0.5 rounded">-{Math.floor( 100/( data.price +100) * 100)} %</span>
             <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition cursor-pointer">
-              <Heart className="w-4 h-4" />
+              <Heart  className="w-4 h-4" />
               <Eye className="w-4 h-4" />
             </div>
           </div>

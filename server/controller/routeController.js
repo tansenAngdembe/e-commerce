@@ -3,7 +3,7 @@ const Products = require("../model/Products")
 
 
 const showAllProucts = asyncErrorhandler(async (req, res) => {
-  const products = await Products.find();
+  const products = await Products.aggregate([{ $sample:{size:7}}]);
   const totalProducts = await Products.countDocuments();
 
   res.status(200).json({ success: true, totalProducts, products })

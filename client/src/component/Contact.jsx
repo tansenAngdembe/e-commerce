@@ -1,6 +1,11 @@
+import {useForm} from "react-hook-form"
 import { Mail, Phone } from "lucide-react";
 
 const Contact = () => {
+ const {register
+  
+ } = useForm()
+
   return (
     <section className="flex  items-center justify-around p-8 bg-gray-100">
       <div className="flex flex-col gap-10 w-full max-w-lg text-gray-800">

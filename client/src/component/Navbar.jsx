@@ -49,7 +49,7 @@ const Navbar = () => {
           <div className="relative m-5">
             <Search className="absolute top-2 right-2 h-5 w-5 text-gray-700" />
             <input
-              type="search"
+              type="text"
               name="search"
               id=""
               placeholder="What are you looking for?"
@@ -61,7 +61,11 @@ const Navbar = () => {
             <ul className="flex justify-center items-center gap-5">
               <li>
                 <Link to="#">
+                <div className="flex relative">
                   <ShoppingCart />
+                  <span className="text-2xl text-orange-500 absolute left-3 bottom-1">0</span>
+                  
+                </div>
                 </Link>
               </li>
 
