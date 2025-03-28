@@ -13,7 +13,7 @@ const Cart = () => {
 
   }
   const shippingCost = 70;
-  // const total = 0
+  // const total = 0 cart total
   const totalCalculation = state.cart.reduce((accum, tolval) => {
     return accum += tolval.product_id.price * tolval.quantity;
   }, 0)
