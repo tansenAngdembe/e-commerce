@@ -16,13 +16,13 @@ const Navbar = () => {
       </>
       <nav className="flex items-center justify-around">
         <div>
-          <h1 className="text-2xl font-bold font-sans">
+          <h1 className="text-2xl font-bold font-sans md:text-xl">
             {" "}
             <Link to="/">Quick Kart</Link>{" "}
           </h1>
         </div>
         <div>
-          <ul className="flex gap-12 text-[1rem] font-light">
+          <ul className="flex gap-12 md:gap-6 text-[1rem] font-light">
             <li>
               <Link to="/" className={`${isActive("/")}`}>
                 Home

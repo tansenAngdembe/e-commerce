@@ -10,6 +10,7 @@ import HeadPhone from "../assets/headphone.svg";
 import Gaming from "../assets/gaming.svg";
 import CategoryHead from "../component/Category/CategoryHead.jsx";
 
+
 const Home = () => {
   return (
     <>
