@@ -1,16 +1,31 @@
 import { Heart, Search, ShoppingCart, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import Advertisement from "./Advertisement";
+import { Provider } from "../context/contextProvider";
+import { useEffect } from "react";
+
 const Navbar = () => {
   const location = useLocation();
+  const { state, dispatch } = Provider();
+  const isLogin = false
   const isActive = (path) => {
     return location.pathname === path
       ? "text-sky-950 font-bold underline-offset-1"
       : "";
   };
 
+  const totalItems = state.cart.reduce((accum, inital) => {
+    return accum += inital.quantity
+  }, 0)
+  useEffect(() => {
+    dispatch({ type: "TOTAL_ITEMS", payload: totalItems })
+
+  }, [totalItems])
+
+
   return (
-    <div className="border-b-2 border-b-[var(--border)] h-28 flex flex-col justify-center bg-white">
+    <div className="border-b-2 border-b-[var(--border)] h-28 flex flex-col justify-center bg-white sticky top-0 z-50">
+
       <>
         <Advertisement />
       </>
@@ -60,12 +75,12 @@ const Navbar = () => {
           <div className="flex justify-center items-center">
             <ul className="flex justify-center items-center gap-5">
               <li>
-                <Link to="#">
-                <div className="flex relative">
-                  <ShoppingCart />
-                  <span className="text-2xl text-orange-500 absolute left-3 bottom-1">0</span>
-                  
-                </div>
+                <Link to="/cart">
+                  <div className="flex relative">
+                    <ShoppingCart />
+                    {state.cart.length !== 0 ? <span className="text-2xl text-orange-500 absolute left-5 bottom-1">{state.totalItems}</span> : ""}
+
+                  </div>
                 </Link>
               </li>
 
@@ -74,15 +89,18 @@ const Navbar = () => {
                   <Heart />
                 </Link>
               </li>
-              <li className="shadow-[var(--p-shadow)] rounded-full h-10 w-10 flex justify-center items-center hover:rotate-[360deg] duration-700 ease-in-out">
-                <Link to="#">
-                  <User />
-                </Link>
-              </li>
+              {isLogin &&
+                <li className="shadow-[var(--p-shadow)] rounded-full h-10 w-10 flex justify-center items-center hover:rotate-[360deg] duration-700 ease-in-out">
+                  <Link to="#">
+                    <User />
+                  </Link>
+                </li>
+              }
             </ul>
           </div>
         </div>
       </nav>
+
     </div>
   );
 };

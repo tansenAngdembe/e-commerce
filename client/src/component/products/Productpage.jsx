@@ -2,25 +2,32 @@ import { useEffect, useState } from "react";
 import { HeartIcon, TruckIcon, Undo2 } from "lucide-react";
 import { Provider } from "../../context/contextProvider";
 import { useParams } from "react-router-dom";
+
+
 const uri = import.meta.env.VITE_IMAGE;
 export default function Productpage() {
     const { id } = useParams()
-    const { products } = Provider()
+    const { state, addToCart, successCart  } = Provider()
     const [quantity, setQuantity] = useState(1);
     const [keyExist, setKeyExist] = useState(false)
-    const selectedProduct = products.find((val) => val._id === id)
+    const selectedProduct = state.products.find((val) => val._id === id)
+    const [image, setImage] = useState(selectedProduct?.images[0])
 
-    useEffect(()=>{
+   
+
+
+    useEffect(() => {
         const isExist = Object.keys(selectedProduct).includes("sizes")
         setKeyExist(isExist)
 
-    },[selectedProduct])
+    }, [selectedProduct])
+ 
 
-
-
+ 
 
     return (
-        <div className="p-4 md:p-8 lg:p-12 max-w-6xl mx-auto">
+        <>      
+        <div className="p-4 md:p-8 lg:p-12 max-w-6xl mx-auto">          
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Product Images */}
@@ -28,14 +35,14 @@ export default function Productpage() {
                     <div className="flex flex-col w-[30%] p-4 m-4 gap-2 justify-items-start">
                         {
                             selectedProduct?.images?.map((img, index) => (
-                                <div className=" bg-gray-100">
-                                    <img key={index} src={`${uri}/static${img}`} alt={selectedProduct?.name} className="w-full mix-blend-multiply  cursor-pointer" />
+                                <div key={index} className=" bg-gray-100" onClick={() => setImage(img)}>
+                                    <img src={`${uri}/static${img}`} alt={selectedProduct?.name} className="w-full mix-blend-multiply  cursor-pointer" />
                                 </div>
                             ))
                         }
                     </div>
                     <div className="bg-gray-100 p-2  w-[70%] justify-center place-content-center">
-                        <img src={`${uri}/static${selectedProduct?.images[0]}`} alt="Gamepad" className="w-full mix-blend-multiply " />
+                        <img src={`${uri}/static${image}`} alt="Gamepad" className="w-full mix-blend-multiply " />
                     </div>
                 </div>
 
@@ -68,14 +75,20 @@ export default function Productpage() {
 
 
                     {/* Quantity Selector & Buy Button */}
-                    <div className="mt-4 flex items-center gap-4">
-                        <div className="flex items-center border px-3 py-2 rounded">
-                            <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
-                            <span className="px-4">{quantity}</span>
-                            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+                    <div className="mt-4 flex flex-col gap-4">
+                        <div className="flex items-center">
+                            <button className="border  px-3 py-2 rounded cursor-pointer" onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+                            <span className="px-4 p-2">{quantity}</span>
+                            <button className="border  px-3 py-2 rounded cursor-pointer" onClick={() => setQuantity(quantity + 1)} disabled={selectedProduct?.stock <= quantity || quantity >= 15}>+</button>
                         </div>
-                        <button className="bg-red-500 text-white px-6 py-2 rounded">Buy Now</button>
-                        <HeartIcon className="text-gray-500 cursor-pointer" />
+                        <div className="flex gap-2">
+                            <button className="bg-blue-500 text-white px-6 py-2 rounded cursor-pointer">Buy Now</button>
+                            <button className="bg-orange-500 text-white px-6 py-2 rounded cursor-pointer"
+                                onClick={()=>{addToCart(selectedProduct._id,quantity); successCart()}}
+                            // onClick={successCart}
+                            >Add to Cart</button>
+
+                        </div>
                     </div>
 
                     {/* Delivery & Return Info */}
@@ -91,7 +104,7 @@ export default function Productpage() {
             </div>
             <div className="m-5 p-4">
                 <h1 className="text-lg bg-gray-50  mt-4 p-2 pb-3">Product details of {selectedProduct?.name}</h1>
-                <span className="text-lg font-semibold mt-4">Description:</span><span>{selectedProduct?.description?.long}</span>
+                <span className="text-lg font-semibold mt-4">Description: </span><span>{selectedProduct?.description?.long}</span>
                 <h2 className="text-lg font-semibold mt-4">Features:</h2>
                 <ul className="list-disc pl-5 text-gray-700">
                     {selectedProduct?.features?.map((feature, index) => (
@@ -119,6 +132,8 @@ export default function Productpage() {
                     </div>
                 ))}
             </div>
+            
         </div>
+        </>
     );
 }

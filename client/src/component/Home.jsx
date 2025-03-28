@@ -9,20 +9,18 @@ import CategoryHead from "../component/Category/CategoryHead.jsx";
 const Home = () => {
   return (
     <>
-      <div className="flex gap-12 lg:gap-20">
+      <div className="flex gap-1 lg:gap-2">
         {/* Sidebar */}
         <div className="w-1/5">
           <Aside />
         </div>
 
-        <section className="flex items-center justify-start w-2/3">
-          <div className="w-[90%] h-[400px] overflow-hidden flex items-center justify-center">
-            <ImageSlider />
-          </div>
-        </section>
+        <div >         
+            <ImageSlider />         
+        </div>
 
       </div>
-      <h1 className="text-center font-medium text-2xl">Top Selling Products</h1>
+      <h1 className="text-center m-8 font-medium text-2xl mt-10">Top Selling Products</h1>
       <div >
         <ProductCard />
       </div>

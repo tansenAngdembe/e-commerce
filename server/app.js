@@ -24,12 +24,21 @@ app.use("/static", express.static(path.join(__dirname, "public")))
 //router
 app.use("/api", details)
 
+/*testig route
+const allowedIps =[""]
+  app.get("/", (req,res)=>{
+  const clientIP = req.ip || req.socket.remoteAddress;
+ if(!allowedIps.includes(clientIP)){
+     return res.status(403).json({access_denied: "You are not allowed to access this route"})  }
+ res.status(200).send(clientIP);
+
+ }) */
 
 app.use(globalErrorController)
 
 const start = async () => {
     try {
-         await connection()
+        await connection()
         app.listen(PORT, () => {
             console.log(`Server started on port ${PORT}`)
         })

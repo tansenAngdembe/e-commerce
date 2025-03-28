@@ -7,6 +7,7 @@ import Signin from "./component/Signin.jsx"
 import Productpage from "./component/products/Productpage.jsx";
 
 import Notfound from "./Notfound.jsx";
+import Cart from "./component/products/Cart.jsx";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/sign" element={<Signin />} />
         <Route path="/product/:name/:id" element={<Productpage />} />
+        <Route path="/cart" element = {<Cart/>}/>
        
         <Route path="*" element={<Notfound />} />
       </Route>
