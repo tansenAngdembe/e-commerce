@@ -16,12 +16,13 @@ const initalState = {
 
 // console.log(toataItems)
 const AppProvider = ({ children }) => {
-    // const [products,setProducts] =  useState([])
+    const [isProductCategory,setIsProductByCategories] =  useState(null)
     const [state, dispatch] = useReducer(reducer, initalState);
 
     const addToCart = (id, quantity) => {
         dispatch({ type: "ADD_TO_CART", payload: { id: id, quantity: quantity } })
     }
+   
     const successCart = () => {
         toast.success("Items added to Cart.", {
             position: "top-center",
@@ -54,7 +55,7 @@ const AppProvider = ({ children }) => {
 
     return (
         <ContextProvider.Provider value={{
-            state, dispatch, addToCart, successCart
+            state, dispatch, addToCart, successCart,isProductCategory,setIsProductByCategories
         }}>
             {
                 children

@@ -35,7 +35,7 @@ export default function Productpage() {
                     <div className="flex flex-col w-[30%] p-4 m-4 gap-2 justify-items-start">
                         {
                             selectedProduct?.images?.map((img, index) => (
-                                <div key={index} className=" bg-gray-100" onClick={() => setImage(img)}>
+                                <div key={index} className=" bg-gray-100" onMouseEnter={() => setImage(img)}>
                                     <img src={`${uri}/static${img}`} alt={selectedProduct?.name} className="w-full mix-blend-multiply  cursor-pointer" />
                                 </div>
                             ))

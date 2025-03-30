@@ -1,25 +1,29 @@
 import { Link } from "react-router-dom";
 import { Provider } from "../../context/contextProvider";
+import { useEffect } from "react";
 
 
 const Cart = () => {
   const uri = import.meta.env.VITE_IMAGE;
 
-  const { state } = Provider();
-  console.log(state.cart)
+  const { state, dispatch} = Provider();
+  // console.log(state.cart)
 
   const removeItem = (id) => {
-    console.log("remove items")
-
-  }
+         dispatch({ type: "REMOVE_FROM_CART", payload: id })  
+         console.log(state.cart.filter(item => item.product_id?._id !== id)) 
+     
+       }
   const shippingCost = 70;
   // const total = 0
   const totalCalculation = state.cart.reduce((accum, tolval) => {
-    return accum += tolval.product_id.price * tolval.quantity;
+    return accum += tolval?.product_id?.price * tolval?.quantity;
   }, 0)
   const subtotal = Math.floor(totalCalculation)
-
-
+  useEffect(()=>{
+    console.log(state.cart.product_id)
+  },[state.cart])
+ 
   return (
     <div>
       {state.cart.length !== 0 ?
@@ -35,19 +39,19 @@ const Cart = () => {
             </thead>
             <tbody>
               {state.cart.map((item) => (
-                <tr key={item.product_id._id} className="border-b border-gray-300">
+                <tr key={item.product_id?._id} className="border-b border-gray-300">
                   <td className="p-2 flex items-center gap-2">
-                    <button onClick={() => removeItem(item.product_id.id)} className="text-red-500">❌</button>
-                    <img src={`${uri}/static${item.product_id.images[0]}`} alt={item.product_id.name} className="w-12 h-12" />
-                    {item.product_id.name}
+                    <button onClick={() => removeItem(item?.product_id?._id)} className="text-red-500 cursor-pointer">❌</button>
+                    <img src={`${uri}/static${item?.product_id?.images[0]}`} alt={item?.product_id?.name} className="w-12 h-12" />
+                    {item.product_id?.name}
                   </td>
-                  <td className="p-2">Rs.{item.product_id.price}</td>
+                  <td className="p-2">Rs.{item?.product_id?.price}</td>
                   <td className="p-2">
 
-                    {item.quantity}
+                    {item?.quantity}
 
                   </td>
-                  <td className="p-2">Rs.{Math.floor(item.product_id.price * item.quantity)}</td>
+                  <td className="p-2">Rs.{Math.floor(item.product_id?.price * item?.quantity)}</td>
                 </tr>
               ))}
             </tbody>

@@ -6,8 +6,8 @@ import { useEffect } from "react";
 
 const Navbar = () => {
   const location = useLocation();
-  const { state, dispatch } = Provider();
-  const isLogin = false
+  const { state, dispatch ,setIsProductByCategories} = Provider();
+  const isLogin = true
   const isActive = (path) => {
     return location.pathname === path
       ? "text-sky-950 font-bold underline-offset-1"
@@ -33,13 +33,13 @@ const Navbar = () => {
         <div>
           <h1 className="text-2xl font-bold font-sans">
             {" "}
-            <Link to="/">Quick Kart</Link>{" "}
+            <Link to="/" onMouseEnter={()=>setIsProductByCategories(null)} >Quick Kart</Link>{" "}
           </h1>
         </div>
         <div>
           <ul className="flex gap-12 text-[1rem] font-light">
             <li>
-              <Link to="/" className={`${isActive("/")}`}>
+              <Link to="/" className={`${isActive("/")}`} onClick={()=>setIsProductByCategories(null)}>
                 Home
               </Link>
             </li>
@@ -78,7 +78,7 @@ const Navbar = () => {
                 <Link to="/cart">
                   <div className="flex relative">
                     <ShoppingCart />
-                    {state.cart.length !== 0 ? <span className="text-2xl text-orange-500 absolute left-5 bottom-1">{state.totalItems}</span> : ""}
+                    {state.cart.length !== 0 ? <span className=" flex  h-full w-full place-content-between justify-center text-[15px] bg-black text-white  rounded-xl absolute left-4 bottom-1">{state.totalItems}</span> : ""}
 
                   </div>
                 </Link>
