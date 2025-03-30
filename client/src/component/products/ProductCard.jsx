@@ -7,7 +7,7 @@ const uri = import.meta.env.VITE_IMAGE;
 const ProductCard = () => {
   const { state, addToCart, successCart } = Provider();
   return (
-    <section className="grid grid-cols-6 max-sm:grid-cols-2  m-4 gap-4 " >
+    <section className="grid grid-cols-6 max-sm:grid-cols-2 md  m-4 gap-4 " >
       {state.products.map((data) => (
 
         <div key={data._id} className=" flex flex-col   group mb-7 w-[200px]   outline outline-gray-300 rounded p-2 transition duration-300 hover:shadow-lg hover:scale-105" >
