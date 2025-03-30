@@ -19,7 +19,7 @@ const Category = () => {
   // flex items-center justify-around  p-10 w-[100%]
   return (
 
-    <div className="flex items-center justify-center gap-8 ">      
+    <div className="flex items-center flex-wrap justify-center gap-8 ">      
         {
           categoryTypes.map((types)=>(
             <div className="flex flex-col items-center justify-center outline-1  w-36 h-36 rounded-2xl  cursor-pointer outline-gray-500 hover:bg-gray-500 hover:text-white"> 
