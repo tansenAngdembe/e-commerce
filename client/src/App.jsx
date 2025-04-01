@@ -9,6 +9,8 @@ import ProductByCategory from "./component/Category/ProductByCategory.jsx";
 
 import Notfound from "./Notfound.jsx";
 import Cart from "./component/products/Cart.jsx";
+import CheckoutPage from "./component/products/CheckoutPage.jsx";
+import AccountPage from "./component/AccountPage.jsx";
 
 
 function App() {
@@ -23,6 +25,9 @@ function App() {
         <Route path="/product/:name/:id" element={<Productpage />} />
         <Route path="/cart" element = {<Cart/>}/>       
         <Route path="*" element={<Notfound />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/account" element={<AccountPage />} />
+
       </Route>
     </Routes>
   )
